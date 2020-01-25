@@ -1,28 +1,30 @@
+var adicionar = document.querySelector('#txt')
 var btn = document.querySelector('#btn')
 var res = document.querySelector('div#res')
-var adicionar = document.querySelector('#txt')
 var nomes = ["Diego", "Gabriel", "Lucas"]
+var cont = nomes.length
 
 res.style.color = 'white'
 
 
 btn.onclick = function renderizar(){
-	/*var nomesElement = document.createElement('li')
-	var nomesText = document.createtextNode(passando)
-	
-	listElement.appendChild(nomesElement)
-	nomesElement.appendChild(nomesText)*/
+for(todo of nomes){
+	res.innerHTML = `${nomes}`
+} 
 
-	
+	res.innerHTML = ""
 	nomes.push(adicionar.value) //adicionar no vetor
+	console.log(nomes)
 	
-	for (passando of nomes){
-		res.innerHTML = `${nomes}`
-	}
+	for(passando of nomes){
+		res.innerHTML += `<li>${passando}</li>`
+	} 
+
+
 	adicionar.value = '' //inputElement.value = '' //esvaziar o input
 }
-/*
-Seguindo o resultado do exercício anterior adicione um input em tela e um botão como a seguir:
+
+/*Seguindo o resultado do exercício anterior adicione um input em tela e um botão como a seguir:
 		<input type="text" name="nome">
 		<button onClick="adicionar()">Adicionar</button>
 Ao clicar no botão, a função adicionar() deve ser disparada adicionando um novo item a lista de
