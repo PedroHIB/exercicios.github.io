@@ -1,33 +1,29 @@
-var user = document.querySelector('#user')
-var res = document.querySelector('#res')
+var listElement = document.querySelector('ul')
+var inputElement = document.querySelector('input')
 
-var exerc = function exerc(){
-	return new Promise(function(resolve, reject){
-		var xhr = new XMLHttpRequest()
-		xhr.open('GET', `https://api.github.com/users/PedroHIB/repos`)
-		xhr.send(null)
 
-		xhr.onreadystatechange = function(){
-			if (xhr.readyState === 4) {
-				if(xhr.status === 200) {
-					resolve(JSON.parse(xhr.responseText))
-				} else {
-					reject('Erro na requisição')
-				}
-			}
-		}
-	})
+function renderRepositories(repositories){
+    for(repo of repositories){
+        const textElement = document.createTextNode(repo.name)
+        const liElement = document.createElement('li')
+
+        liElement.appendChild(textElement)
+        listElement.appendChild(liElement)
+    }
 }
 
-exerc()
-	.then(function(response){
-		console.log(response)
-	})
-	.catch(function(error){
-		console.log(error)
-	})
+function ex(){
+    var user = inputElement.value
+    if(!user) return
+    axios.get(`https://api.github.com/users/${user}/repos`)
+	
+    .then(function (response) {
+    	renderRepositories(response.data)
+    })
+}
 
-console.log(user.value)
+
+
 
 /*
 Crie uma tela com um <input> que deve receber o nome de um usuário no Github. Após digitar o nome do usuário
